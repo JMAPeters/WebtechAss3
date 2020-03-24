@@ -1,3 +1,5 @@
+//- als we hier een navigatie in willen en die moet op meerdere paginas kunnen we ook een navigatie.pug aanmaken en die in elke pagina importeren
+
 doctype html
 html(lang="en")
     head
@@ -18,10 +20,11 @@ html(lang="en")
                     th Title
                     th Program
                     th Academic level
-                    th Title
+                    th Level
                 for course in courses
                     tr
-                        td= course.title
+                        td
+                            a(href="/course/"+course.id)= course.title
                         td= course.program
                         td= course.semester
                         td= course.level

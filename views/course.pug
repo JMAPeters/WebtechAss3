@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset = "utf-8")
+        //- meta(name = "discription" content="All courses for the information and computing science bachelor at Utrecht University")
+        //- meta(name = "keywords" content="courses, utrecht university, information science, computing science, game technology")
+        meta(name = "viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="css/main.css")
+        title= course.title
+
+    body
+        header
+            h1= course.title
+        article
+            ul Course information
+                li= 'This course is part of the '  + course.program + ' program.'
+                li= 'It is a level ' + course.level + ' course'
+                li= 'The course is taught in semester ' + course.semester
+                li= course.description
+                li= course.teacherName
+                li
+                    img(src=course.teacherPhoto)
+        

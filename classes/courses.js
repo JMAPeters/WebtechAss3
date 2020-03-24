@@ -1,5 +1,6 @@
 class Course {
-    constructor(title, program, level, semester, description, teacherName, teacherPhoto) {
+    constructor(id, title, program, level, semester, description, teacherName, teacherPhoto) {
+      this.id = id;
       this.title = title;
       this.program = program;
       this.level = level;

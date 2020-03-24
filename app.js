@@ -19,8 +19,8 @@ const home = require('./router/test');
 
 app.use('/home', home);
 
-const firstpage = require('./router/welcome');
-app.use('/', firstpage)
+const courserouter = require('./router/courserouter');
+app.use('/', courserouter)
 
 // var fs = require("fs");
 // var file = __dirname + "/database/" + "courses.db";
