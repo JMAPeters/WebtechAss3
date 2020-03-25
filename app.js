@@ -24,6 +24,8 @@ app.use('/home', home);
 //displayDatabase("Webtech");
 //var data = getData("SELECT courseName FROM Webtech");
 //updateData("UPDATE Concurrency SET courseTeacher = Gerard");
+const courserouter = require('./router/courserouter');
+app.use('/', courserouter)
 
 
 

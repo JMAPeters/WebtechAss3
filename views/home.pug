@@ -1,5 +1,31 @@
-html
+//- als we hier een navigatie in willen en die moet op meerdere paginas kunnen we ook een navigatie.pug aanmaken en die in elke pagina importeren
+
+doctype html
+html(lang="en")
     head
-        title= title
+        meta(charset = "utf-8")
+        meta(name = "discription" content="All courses for the information and computing science bachelor at Utrecht University")
+        meta(name = "keywords" content="courses, utrecht university, information science, computing science, game technology")
+        meta(name = "viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="css/main.css")
+        title Welcome
     body
-        h1= message
+        header
+            h1 Department of Information and Computing Sciences
+        article
+            h2 Overview of all courses
+            p Below you can find a list of courses for the following bachelors: computing science, infomration science and game technology.
+            table
+                tr 
+                    th Title
+                    th Program
+                    th Academic level
+                    th Level
+                for course in courses
+                    tr
+                        td
+                            a(href="/course/"+course.id)= course.title
+                        td= course.program
+                        td= course.semester
+                        td= course.level
+                    
