@@ -6,9 +6,7 @@ const app = express();
  * Settings
  */
 const port = 8036;
-
 app.set('view engine', 'pug');
-
 app.use(express.static('static'));
 
 /**
@@ -17,6 +15,8 @@ app.use(express.static('static'));
 
 const home = require('./router/test');
 app.use('/home', home);
+const courserouter = require('./router/courserouter');
+app.use('/', courserouter)
 
 //createDatabase("Concurrency", "INFOB3CC", "Trevor");
 //createDatabase("Webtech", "INFOB2WT", "Sergey");
@@ -24,8 +24,7 @@ app.use('/home', home);
 //displayDatabase("Webtech");
 //var data = getData("SELECT courseName FROM Webtech");
 //updateData("UPDATE Concurrency SET courseTeacher = Gerard");
-const courserouter = require('./router/courserouter');
-app.use('/', courserouter)
+
 
 
 
