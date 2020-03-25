@@ -1,4 +1,4 @@
-function createDatabase(course, code, teacher) {
+exports.createDatabase = function(code, title, program, level, semester, description, teacher) {
     var fs = require("fs");
     var file = __dirname + "/database/" + "courses.db";
     var exists = fs.existsSync(file);
@@ -15,10 +15,10 @@ function createDatabase(course, code, teacher) {
 
     db.serialize(() => {
         //if(!exists) {
-            db.run("CREATE TABLE " + course + " (courseName TEXT, courseCode TEXT, courseTeacher TEXT);");
+            db.run("CREATE TABLE " + code + " (code TEXT, title TEXT, program TEXT, level TEXT, semester INT, description TEXT, teacher TEXT);");
         //}
-        var stmt = db.prepare("INSERT INTO " + course + " VALUES (?, ?, ?)");
-        stmt.run(course, code, teacher);
+        var stmt = db.prepare("INSERT INTO " + code + " VALUES (?, ?, ?, ?, ?, ?, ?)");
+        stmt.run(code, title, program, level, semester, description, teacher);
         stmt.finalize();
 
     });
@@ -32,7 +32,7 @@ function createDatabase(course, code, teacher) {
 }
 
 
-function displayDatabase(course) {
+exports.displayDatabase = function(code) {
     var fs = require("fs");
     var file = __dirname + "/database/" + "courses.db";
     var exists = fs.existsSync(file);
@@ -48,7 +48,7 @@ function displayDatabase(course) {
     });
 
     db.serialize(() => {
-        db.each('SELECT * FROM ' + course , (err, row) => {
+        db.each('SELECT * FROM ' + code , (err, row) => {
             if (err) {
                 console.error(err.message);
             }
@@ -64,7 +64,7 @@ function displayDatabase(course) {
     })
 }
 
-function getData(sql) {
+exports.getData = function(sql) {
     var fs = require("fs");
     var file = __dirname + "/database/" + "courses.db";
     var exists = fs.existsSync(file);
@@ -79,13 +79,14 @@ function getData(sql) {
         console.log('Connected to the courses database.');
     });
 
+    let result = [];
     db.serialize(() => {
         db.each(sql , (err, row) => {
             if (err) {
                 console.error(err.message);
             }
             console.log(row);
-            return (row);
+            result.push(row);
         });
     });
 
@@ -95,9 +96,11 @@ function getData(sql) {
         }
         console.log('Close the database connection.');
     })
+    console.log(result); 
+    return result; 
 }
 
-function updateData(sql) {
+exports.updateData = function(sql) {
     var fs = require("fs");
     var file = __dirname + "/database/" + "courses.db";
     var exists = fs.existsSync(file);

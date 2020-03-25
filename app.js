@@ -17,12 +17,13 @@ const home = require('./router/test');
 app.use('/home', home);
 const courserouter = require('./router/courserouter');
 app.use('/', courserouter)
+const dbfunction = require('./databasefunctions');
 
-//createDatabase("Concurrency", "INFOB3CC", "Trevor");
+//dbfunction.createDatabase("INFOB3CC","Concurrency", "Computer Science", "BSc", 2, "A course about Concurrency", "Trevor McDonell");
 //createDatabase("Webtech", "INFOB2WT", "Sergey");
-//displayDatabase("Concurrency");
+//dbfunction.displayDatabase("INFOB3CC");
 //displayDatabase("Webtech");
-//var data = getData("SELECT courseName FROM Webtech");
+var data = dbfunction.getData("SELECT title FROM INFOB3CC");
 //updateData("UPDATE Concurrency SET courseTeacher = Gerard");
 
 
