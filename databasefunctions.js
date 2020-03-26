@@ -14,10 +14,10 @@ exports.createDatabase = function(code, title, program, level, semester, descrip
     });
 
     db.serialize(() => {
-        //if(!exists) {
-            db.run("CREATE TABLE " + code + " (code TEXT, title TEXT, program TEXT, level TEXT, semester INT, description TEXT, teacher TEXT);");
-        //}
-        var stmt = db.prepare("INSERT INTO " + code + " VALUES (?, ?, ?, ?, ?, ?, ?)");
+        if(!exists) {
+            db.run("CREATE TABLE courses (code TEXT, title TEXT, program TEXT, level TEXT, semester INT, description TEXT, teacher TEXT);");
+        }
+        var stmt = db.prepare("INSERT INTO courses VALUES (?, ?, ?, ?, ?, ?, ?)");
         stmt.run(code, title, program, level, semester, description, teacher);
         stmt.finalize();
 
@@ -32,7 +32,7 @@ exports.createDatabase = function(code, title, program, level, semester, descrip
 }
 
 
-exports.displayDatabase = function(code) {
+exports.displayDatabase = function() {
     var fs = require("fs");
     var file = __dirname + "/database/" + "courses.db";
     var exists = fs.existsSync(file);
@@ -48,7 +48,7 @@ exports.displayDatabase = function(code) {
     });
 
     db.serialize(() => {
-        db.each('SELECT * FROM ' + code , (err, row) => {
+        db.each('SELECT * FROM courses' , (err, row) => {
             if (err) {
                 console.error(err.message);
             }
@@ -85,7 +85,6 @@ exports.getData = function(sql) {
             if (err) {
                 console.error(err.message);
             }
-            console.log(row);
             result.push(row);
         });
     });
@@ -95,9 +94,9 @@ exports.getData = function(sql) {
             console.error(err.message);
         }
         console.log('Close the database connection.');
+        console.log(result);
+        return result; 
     })
-    console.log(result); 
-    return result; 
 }
 
 exports.updateData = function(sql) {

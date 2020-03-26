@@ -20,10 +20,10 @@ app.use('/', courserouter)
 const dbfunction = require('./databasefunctions');
 
 //dbfunction.createDatabase("INFOB3CC","Concurrency", "Computer Science", "BSc", 2, "A course about Concurrency", "Trevor McDonell");
-//createDatabase("Webtech", "INFOB2WT", "Sergey");
-//dbfunction.displayDatabase("INFOB3CC");
-//displayDatabase("Webtech");
-var data = dbfunction.getData("SELECT title FROM INFOB3CC");
+//dbfunction.createDatabase("INFOB2WT", "Webtechnologie", "Computer Science",  "BSc", 2, "A course about Web technologie", "Sergey");
+//dbfunction.displayDatabase();
+//var data = dbfunction.getData('SELECT teacher FROM courses WHERE code = "INFOB3CC"');
+//console.log(data);
 //updateData("UPDATE Concurrency SET courseTeacher = Gerard");
 
 
