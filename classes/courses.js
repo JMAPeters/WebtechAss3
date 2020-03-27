@@ -1,13 +1,12 @@
 class Course {
-    constructor(id, title, program, level, semester, description, teacherName, teacherPhoto) {
-      this.id = id;
-      this.title = title;
-      this.program = program;
-      this.level = level;
-      this.semester = semester;
-      this.description = description;
-      this.teacherName = teacherName;
-      this.teacherPhoto = teacherPhoto;
+    constructor(row) {
+      this.code = row.code;
+      this.title = row.title;
+      this.program = row.program;
+      this.level = row.level;
+      this.semester = row.semester;
+      this.description = row.description;
+      this.teacher = row.teacher;
     }
     
 }

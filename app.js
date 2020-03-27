@@ -17,19 +17,44 @@ const home = require('./router/test');
 app.use('/home', home);
 const courserouter = require('./router/courserouter');
 app.use('/', courserouter)
-const dbfunction = require('./databasefunctions');
-
-//dbfunction.createDatabase("INFOB3CC","Concurrency", "Computer Science", "BSc", 2, "A course about Concurrency", "Trevor McDonell");
-//dbfunction.createDatabase("INFOB2WT", "Webtechnologie", "Computer Science",  "BSc", 2, "A course about Web technologie", "Sergey");
-//dbfunction.displayDatabase();
-//var data = dbfunction.getData('SELECT teacher FROM courses WHERE code = "INFOB3CC"');
-//console.log(data);
-//updateData("UPDATE Concurrency SET courseTeacher = Gerard");
+const db = require('./database');
 
 
+db.all('SELECT * FROM courses',[], (err, rows) => {
+    if (err) {
+      res.status(400).json({"error":err.message});
+      return;
+    }
+    console.log(rows)
+})
+  
 
 
 /**
  * App start
  */
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+//functie om de database te sluiten als de server wordt afgesloten
+function dbclose(){
+    db.close((err) => {
+        if (err) {
+            console.error(err.message);
+        }
+        console.log('Close the database connection.');
+        process.exit();
+    })
+    
+    //sluit na 30 seconden als de database niet gesloten kan worden
+    setTimeout(function(){
+        console.error("Could not close database, exiting");
+        process.exit(1);
+    }, 30 * 1000);
+
+}
+
+//interrupt
+process.on('SIGINT', dbclose); 
+
+//terminate
+process.on('SIGTERM', dbclose);
