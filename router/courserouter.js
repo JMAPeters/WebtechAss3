@@ -4,13 +4,30 @@ const {Course} =require( "../classes/courses.js")
 const dbfunction = require('../databasefunctions');
 
 router.get('/', function (req, res) {
-        var code = dbfunction.getData('SELECT code FROM courses WHERE code = "INFOB3CC"');
-        var title = dbfunction.getData('SELECT title FROM courses WHERE code = "INFOB3CC"');
-        var program = dbfunction.getData('SELECT program FROM courses WHERE code = "INFOB3CC"');
-        var level  = dbfunction.getData('SELECT level FROM courses WHERE code = "INFOB3CC"');
-        var semester  = dbfunction.getData('SELECT semester FROM courses WHERE code = "INFOB3CC"');
-        var description = dbfunction.getData('SELECT description FROM courses WHERE code = "INFOB3CC"');
-        var teacher = dbfunction.getData('SELECT teacher FROM courses WHERE code = "INFOB3CC"');
+    /* 
+    var coursesInDB = dbfunction.getData('SELECT conde from courses);
+    const courses = []
+    
+    for (let i = 0; i < coursesInDB.length; i++) {
+        var code = dbfunction.getData('SELECT code FROM courses WHERE code = '+ course);
+        var title = dbfunction.getData('SELECT title FROM courses WHERE code = '+ course);
+        var program = dbfunction.getData('SELECT program FROM courses WHERE code = '+ course);
+        var level  = dbfunction.getData('SELECT level FROM courses WHERE code = '+ course);
+        var semester  = dbfunction.getData('SELECT semester FROM courses WHERE code = '+ course);
+        var description = dbfunction.getData('SELECT description FROM courses WHERE code = '+ course);
+        var teacher = dbfunction.getData('SELECT teacher FROM courses WHERE code = '+ course);
+        courses.push(new Course(code, title, program, level, semester, description, teacher))
+    }
+    */
+    var course = "INFOB3CC"
+
+        var code = dbfunction.getData('SELECT code FROM courses WHERE code = '+ course);
+        var title = dbfunction.getData('SELECT title FROM courses WHERE code = '+ course);
+        var program = dbfunction.getData('SELECT program FROM courses WHERE code = '+ course);
+        var level  = dbfunction.getData('SELECT level FROM courses WHERE code = '+ course);
+        var semester  = dbfunction.getData('SELECT semester FROM courses WHERE code = '+ course);
+        var description = dbfunction.getData('SELECT description FROM courses WHERE code = '+ course);
+        var teacher = dbfunction.getData('SELECT teacher FROM courses WHERE code = '+ course);
     const courses = [
         new Course(code, title, program, level, semester, description, teacher)
 
