@@ -7,15 +7,15 @@ class Person{
 }
 
 class Teacher extends Person{
-    constructor(photo){
-        super();
+    constructor(id, lastName, firstName, photo){
+        super(id, lastName, firstName);
         this.photo = photo; 
     }    
 }
 
 class Student extends Person{
-    constructor(program, level, password){
-        super();
+    constructor(id, lastName, firstName, program, level, password){
+        super(id, lastName, firstName);
         this.program = program; 
         this.level = level;
         this.password = password;

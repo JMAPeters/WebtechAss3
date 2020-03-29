@@ -17,5 +17,6 @@ html(lang="en")
                 li= 'It is a level ' + course.level + ' course'
                 li= 'The course is taught in semester ' + course.semester
                 li= course.description
-                li= course.teacher
+                li= course.teacher.firstName + ' ' + course.teacher.lastName
+                li= course.teacher.photo
         
