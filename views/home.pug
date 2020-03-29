@@ -24,7 +24,7 @@ html(lang="en")
                 for course in courses
                     tr
                         td
-                            a(href="/course/"+course.code)= course.title + ""
-                        td= course.program + ""
-                        td= course.semester + ""
-                        td= course.level + ""
+                            a(href="/course/"+course.code)= course.title
+                        td= course.program
+                        td= course.semester
+                        td= course.level

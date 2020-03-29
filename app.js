@@ -20,13 +20,13 @@ app.use('/', courserouter)
 const db = require('./database');
 
 
-// db.all('SELECT * FROM courses',[], (err, rows) => {
-//     if (err) {
-//       res.status(400).json({"error":err.message});
-//       return;
-//     }
-//     console.log(rows)
-// })
+db.all('SELECT * FROM teachers',[], (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log(rows)
+})
   
 
 

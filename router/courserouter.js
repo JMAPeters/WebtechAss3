@@ -1,6 +1,7 @@
 const app = require('express')
 const router = app.Router()
 const {Course} =require( "../classes/courses.js")
+const {Teacher} = require("../classes/person.js")
 const db = require('../database');
 
 router.get('/', function (req, res) {
@@ -9,6 +10,7 @@ router.get('/', function (req, res) {
         let courses = [];
         for (let i = 0; i < rows.length; i++) {
             let row = rows[i];
+            console.log(row);
             courses.push(new Course(row, undefined))  
         };
         res.render('home', {courses: courses});
@@ -16,21 +18,17 @@ router.get('/', function (req, res) {
 });
 
 router.get('/course/:courseCode', function (req, res) {
-    var sql = "SELECT * FROM courses WHERE code = ?"
+    var sql = `SELECT *
+               FROM courses
+               JOIN teachers ON courses.teacherId = teachers.teacherId
+               WHERE courses.code = ?`
     var params = [req.params.courseCode]
 
-    db.get(sql, params, function (err, row) {
-        console.log(err);
-        var teacher;
-        var sql2 = "SELECT * FROM teachers WHERE teacherId = ?"
-        var params2 = [row.teacherId]
-        db.get(sql2, params2, function (err2, row2) {
-            console.log(err2);
-            teacher = new Teacher (row2.teacherId, row2.lastName, row2.firstName, row2.photo);
-        })
-
-        res.render('course', {course: new Course(row, teacher)});
+    db.get(sql, params , function (err, row){
+        console.log(err)
+        res.render('course', {course: new Course(row, new Teacher(row.teacherId, row.lastName, row.firstName, row.photo))});
     })
+
 });
 
 module.exports = router
