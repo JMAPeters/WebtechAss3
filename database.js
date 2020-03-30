@@ -1,3 +1,4 @@
+const csv = require('csv-parser')
 var fs = require("fs");
 var file = __dirname + "/database/" + "courses.db";
 var exists = fs.existsSync(file);
@@ -15,6 +16,22 @@ let db = new sqlite3.Database(file, sqlite3.OPEN_READWRITE, (err) => {
 db.serialize(() => {
     if(!exists) {
         ///////////////////////////////
+        db.run(`CREATE TABLE teachers (
+            teacherId INT PRIMARY KEY,
+            lastName TEXT,
+            firstName TEXT,
+            photo BLOB)`);
+
+        var insertTeacher = "INSERT INTO teachers VALUES (?, ?, ?, ?)";
+        fs.createReadStream('./database/csv/teachers.csv')
+            .pipe(csv())
+            .on('data', (data) => {
+                var bitmap = fs.readFileSync('./database/photos/' + data.TeacherId + '.jfif');
+                var teacherphoto = Buffer.from(bitmap).toString('base64');
+                db.run(insertTeacher, [data.TeacherId, data.LastName, data.FirstName, teacherphoto])
+            });
+            
+        ///////////////////////////////
         db.run(`CREATE TABLE courses (
             code TEXT PRIMARY KEY, 
             title TEXT, 
@@ -22,10 +39,15 @@ db.serialize(() => {
             level TEXT, 
             semester INT, 
             description TEXT, 
-            teacherId INT);`);
+            teacherId INT,
+            FOREIGN KEY(teacherId) REFERENCES teachers(teacherId)
+            );`);
         var insertCourse = "INSERT INTO courses VALUES (?, ?, ?, ?, ?, ?, ?)";
-        db.run(insertCourse, ["INFOB3CC","Concurrency", "Computer Science", "BSc", 2, "A course about Concurrency", 1]);
-        db.run(insertCourse, ["INFOB2WT", "Webtechnologie", "Computer Science",  "BSc", 2, "A course about Web technologie", 2]);
+        fs.createReadStream('./database/csv/courses.csv')
+            .pipe(csv())
+            .on('data', (data) => {
+                db.run(insertCourse, [data.Code, data.Title, data.Program, data.Level, data.Blok, data.Description, data.TeacherId])
+            });
 
         ///////////////////////////////
         db.run(`CREATE TABLE students (
@@ -41,16 +63,7 @@ db.serialize(() => {
         db.run(insertStudent, [6, "Rijcken", "Alijt", "", "BSc", "password2"]);
         db.run(insertStudent, [60, "Van Der Hoorn", "Diede", "", "BSc", "password3"]);
 
-        ///////////////////////////////
-        db.run(`CREATE TABLE teachers (
-            teacherId INT PRIMARY KEY,
-            lastName TEXT,
-            firstName TEXT,
-            photo TEXT)`);
-
-        var insertTeacher = "INSERT INTO teachers VALUES (?, ?, ?, ?)";
-        db.run(insertTeacher, [1, "McDonnel", "Trevor", "img"]);
-        db.run(insertTeacher, [2, "Sosnovsky", "Sergey", "img"]);
+        
     }
 });
 
