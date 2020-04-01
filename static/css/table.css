@@ -1,0 +1,38 @@
+table{
+    width: 70%;
+    text-align: center;
+    margin: auto;
+    border-collapse: collapse;
+}
+
+table th:first-child{
+    text-align: left;
+}
+
+table th {
+    background-color: yellow;
+    padding: 10px;
+}
+
+table td {
+    height: 25px;
+    padding: 10px;
+}
+
+table tr:nth-child(even){
+    background-color:lightgray;
+}
+
+table td:first-child {
+    text-align: left;
+}
+
+table tr.a{
+  color: #fe4a49;  
+}
+
+@media only screen and (max-width: 800px){
+    table{
+        font-size: 0.8em;
+    }
+}

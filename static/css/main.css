@@ -1,0 +1,48 @@
+@import "table.css";
+
+body {
+    background-color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1{
+    color: yellow;
+}
+
+nav{
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    background-color:yellow;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 1.1em;
+}
+nav a {
+    float: left;
+    display: block; 
+    color:black;
+    text-align: center;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+nav :first-child{
+    font-size: 1.5em;
+    padding: 5px 15px;
+}
+
+nav a:hover {
+    color:black;
+}
+nav a.active{
+    background-color: orange;
+}
+
+.bannerImage {
+  content: url("Banner.jpg");
+
+  width: 100%; 
+  /* position: relative; */
+}

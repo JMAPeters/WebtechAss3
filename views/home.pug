@@ -7,14 +7,15 @@ html(lang="en")
         meta(name = "discription" content="All courses for the information and computing science bachelor at Utrecht University")
         meta(name = "keywords" content="courses, utrecht university, information science, computing science, game technology")
         meta(name = "viewport" content="width=device-width, initial-scale=1.0")
+        //- Link to external CSS style document
         link(rel="stylesheet" href="css/main.css")
+        link(rel="stylesheet" href="css/table.css")
         title Welcome
     body
-        header
-            h1 Department of Information and Computing Sciences
+        include navigation.pug
         article
             h2 Overview of all courses
-            p Below you can find a list of courses for information and computing science bachelor and masters.
+            p Below you can find a list of courses for Game Technology, Information and Computer Science bachelor and masters.
             table
                 tr 
                     th Title
