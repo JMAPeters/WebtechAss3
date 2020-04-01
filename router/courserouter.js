@@ -5,6 +5,11 @@ const {Teacher} = require("../classes/person.js")
 const db = require('../database');
 
 router.get('/', function (req, res) {
+    res.render('home');
+})
+
+//rout to get all course information
+router.get('/getcourses', function (req, res) {
     db.all('SELECT * FROM courses' , [], function (err, rows) {
         console.log(err);
         let courses = [];
@@ -13,10 +18,12 @@ router.get('/', function (req, res) {
             console.log(row);
             courses.push(new Course(row, undefined))  
         };
-        res.render('home', {courses: courses});
+        res.send(JSON.stringify(courses));
+        //res.render('home', {courses: courses});
     });  
 });
 
+//route to a particular course page
 router.get('/course/:courseCode', function (req, res) {
     var sql = `SELECT *
                FROM courses

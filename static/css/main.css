@@ -42,7 +42,6 @@ nav a.active{
 
 .bannerImage {
   content: url("Banner.jpg");
-
   width: 100%; 
   /* position: relative; */
 }

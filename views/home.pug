@@ -10,37 +10,24 @@ html(lang="en")
         //- Link to external CSS style document
         link(rel="stylesheet" href="css/main.css")
         link(rel="stylesheet" href="css/table.css")
+        script(src='/js/coursetableloader.js')
         title Welcome
-    body
+    body(onload = "loadCourses()")
         include navigation.pug
         article
             h2 Overview of all courses
             p Below you can find a list of courses for Game Technology, Information and Computer Science bachelor and masters.
-            table
+            table#coursetable
                 tr 
                     th Title
                     th Program
                     th Semester
                     th Level
-                for course in courses
-                    tr
-                        td
-                            a(href="/course/"+course.code)= course.title
-                        td= course.program
-                        td= course.semester
-                        td= course.level
-
-//- script. 
-
-//-     function loadCourses(){
-//-         var xhttp = new XMLHttpRequest();
-//-         xhttp.onreadystatechange = function() {
-//-             console.log(this);
-//-         };
-//-         xhttp.open("GET", "")
-
-//-     }
-
-//-     window.onload = (event) => {
-
-//-     };
+                
+                //- //- for course in courses
+                //- //-     tr
+                //- //-         td
+                //- //-             a(href="/course/"+course.code)= course.title
+                //- //-         td= course.program
+                //- //-         td= course.semester
+                //- //-         td= course.level
