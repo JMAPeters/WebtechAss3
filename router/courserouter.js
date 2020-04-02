@@ -5,15 +5,51 @@ const {Teacher} = require("../classes/person.js")
 const db = require('../database');
 
 router.get('/', function (req, res) {
+<<<<<<< Updated upstream
+=======
+    res.render('home');
+})
+
+router.get('/login', function (req, res) {
+    res.render('login');
+})
+
+router.get('/register', function (req, res) {
+    res.render('register');
+})
+
+router.post('/login', function (req, res){
+    //15.40
+})
+
+router.post('/register', async function (req, res) {
+    try {
+        console.log("add user");
+        hashedPassword = req.body.studentNumber;
+        //var insertStudent = "INSERT INTO students VALUES (?, ?, ?, ?, ?, ?)";
+        //db.run(insertStudent, [req.body.studentNumber, req.body.lastNamer, req.body.firstName, req.body.program, req.body.level, hashedPassword]);
+        res.redirect('/login');
+    } catch{
+        res.redirect('/register');
+    }
+})
+
+//rout to get all course information
+router.get('/getcourses', function (req, res) {
+>>>>>>> Stashed changes
     db.all('SELECT * FROM courses' , [], function (err, rows) {
         console.log(err);
         let courses = [];
         for (let i = 0; i < rows.length; i++) {
             let row = rows[i];
-            console.log(row);
+            //console.log(row);
             courses.push(new Course(row, undefined))  
         };
+<<<<<<< Updated upstream
         res.render('home', {courses: courses});
+=======
+        res.send(JSON.stringify(courses));
+>>>>>>> Stashed changes
     });  
 });
 

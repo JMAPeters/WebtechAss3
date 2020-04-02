@@ -1,0 +1,28 @@
+h1 Register
+form(action="/register" method="POST")
+    div
+        lable(for="studentNumber") Student number
+        input(type="text" id="studentNumber" pattern="[0-9]{7}" name="studentNumber" required)
+    div
+        lable(for="password") Password
+        input(type="password" id="password" name="password" required)
+    div
+        lable(for="firstName") First Name
+        input(type="text" id="firstName" name="firstName" required)
+    div
+        lable(for="lastName") Last Name
+        input(type="text" id="lastName" name="lastName" required)
+    div
+        lable(for="program") Program
+        select(id="program" name="program" required)
+            option(value="gametechnologie") Gametechnologie
+            option(value="informatica") Informatica
+            option(value="informatiekunde") Informatiekunde
+    div
+        lable(for="level") Level
+        select(id="level" name="level" required)
+            option(value="bsc") BSc
+            option(value="msc") MSc
+    
+    button(type="submit") Register
+a(href="/login") Login

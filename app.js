@@ -1,24 +1,25 @@
 const express = require('express');
 const app = express();
 
-
 /**
  * Settings
  */
 const port = 8036;
 app.set('view engine', 'pug');
 app.use(express.static('static'));
+app.use(express.urlencoded({extended: false}));
 
 /**
  * Routes
  */
 
-const home = require('./router/test');
-app.use('/home', home);
+// const home = require('./router/test');
+// app.use('/home', home);
 const courserouter = require('./router/courserouter');
 app.use('/', courserouter)
 const db = require('./database');
 
+<<<<<<< Updated upstream
 
 db.all('SELECT * FROM teachers',[], (err, rows) => {
     if (err) {
@@ -30,6 +31,8 @@ db.all('SELECT * FROM teachers',[], (err, rows) => {
   
 
 
+=======
+>>>>>>> Stashed changes
 /**
  * App start
  */

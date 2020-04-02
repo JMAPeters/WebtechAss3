@@ -1,0 +1,11 @@
+h1 Login
+form(action="/login" method="POST")
+    div
+        lable(for="studentNumber") Student number
+        input(type="text" id="studentNumber" name="studentNumber" requierd)
+    div
+        lable(for="password") Password
+        input(type="password" id="password" name="password" requierd)
+    
+    button(type="submit") Login
+a(href="/register") Register
