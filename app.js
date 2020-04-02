@@ -19,20 +19,6 @@ const courserouter = require('./router/courserouter');
 app.use('/', courserouter)
 const db = require('./database');
 
-<<<<<<< Updated upstream
-
-db.all('SELECT * FROM teachers',[], (err, rows) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log(rows)
-})
-  
-
-
-=======
->>>>>>> Stashed changes
 /**
  * App start
  */

@@ -5,8 +5,6 @@ const {Teacher} = require("../classes/person.js")
 const db = require('../database');
 
 router.get('/', function (req, res) {
-<<<<<<< Updated upstream
-=======
     res.render('home');
 })
 
@@ -36,7 +34,6 @@ router.post('/register', async function (req, res) {
 
 //rout to get all course information
 router.get('/getcourses', function (req, res) {
->>>>>>> Stashed changes
     db.all('SELECT * FROM courses' , [], function (err, rows) {
         console.log(err);
         let courses = [];
@@ -45,11 +42,7 @@ router.get('/getcourses', function (req, res) {
             //console.log(row);
             courses.push(new Course(row, undefined))  
         };
-<<<<<<< Updated upstream
-        res.render('home', {courses: courses});
-=======
         res.send(JSON.stringify(courses));
->>>>>>> Stashed changes
     });  
 });
 
