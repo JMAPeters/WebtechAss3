@@ -2,11 +2,8 @@ function loadCourses(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-        //JSON.Parse function for search filtering 
         var toDisplay = JSON.parse(xhttp.responseText);
-        //Array met alle objecten 
-        //courses[i].iets
-        console.log(JSON.parse(xhttp.responseText))
+        //var toDisplay = filterSearch(JSON.parse(xhttp.responseText));
         displayrows(toDisplay, 0);
         }
     };
@@ -21,8 +18,15 @@ function displayrows(courses, pageNb){
     for (let i = 0; i < 10 + j * 10 ; i++) {
         var tr = document.createElement("TR");
         var tdTitle = document.createElement("TD");
+        var a = document.createElement('a');
         var title = document.createTextNode(courses[i].title);
-        tdTitle.appendChild(title);
+        
+        //creating clickable link to specific course
+        a.appendChild(title);
+        a.title = courses[i].title;
+        a.href = "course/" + courses[i].code;
+        tdTitle.appendChild(a); 
+
         var tdProgram = document.createElement("TD");
         var program = document.createTextNode(courses[i].program);
         tdProgram.appendChild(program);
@@ -39,5 +43,16 @@ function displayrows(courses, pageNb){
         tr.appendChild(tdLevel);
 
         table.appendChild(tr);
+    }
+}
+
+function filterSearch(courses){
+    //receives an array with all the existing courses
+    //acces propersties by using courses[i].iets (title, semester, etc)
+    //use forloop to go through all
+
+    for (let i = 0; i < courses.length; i++) {
+        
+        
     }
 }

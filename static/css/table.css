@@ -1,40 +1,40 @@
-table{
+table#coursetable{
     width: 70%;
     text-align: center;
     margin: auto;
     border-collapse: collapse;
 }
 
-table th:first-child{
+#coursetable th:first-child{
     text-align: left;
 }
 
-table th {
+#coursetable th {
     background-color: yellow;
     padding: 10px;
     width: 100%;
 }
 
-table td {
+#coursetable td {
     height: 25px;
     width:  100%;
     padding: 10px;
 }
 
-table tr:nth-child(even){
+#coursetable tr:nth-child(even){
     background-color:lightgray;
 }
 
-table td:first-child {
+#coursetable td:first-child {
     text-align: left;
 }
 
-table tr.a{
+#coursetable tr.a{
   color: #fe4a49;  
 }
 
 @media only screen and (max-width: 800px){
-    table{
+    #coursetable{
         font-size: 0.8em;
     }
 }

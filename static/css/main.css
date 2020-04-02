@@ -1,12 +1,9 @@
 @import "table.css";
+@import "image.css"; 
 
 body {
     background-color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-h1{
-    color: yellow;
 }
 
 nav{
@@ -40,8 +37,20 @@ nav a.active{
     background-color: orange;
 }
 
-.bannerImage {
-  content: url("Banner.jpg");
-  width: 100%; 
-  /* position: relative; */
+#inp1{
+    text-align: center;
+    width: auto;
+    position: relative;
+}
+
+.dropDown{
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+}
+.dropDown form{
+    margin: 0px 10px;
 }

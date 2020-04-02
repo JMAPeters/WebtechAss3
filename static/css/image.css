@@ -1,0 +1,13 @@
+.bannerImage {
+    padding-top: 30px;
+    content: url("Banner.jpg");
+    width: 100%; 
+  }
+  
+  @media only screen and (max-width: 600px){
+      .bannerImage{
+            padding-top: 30px;
+            content: url("Banner_Small.JPG"); 
+            width: 100%;
+        }
+    }

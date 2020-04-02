@@ -5,7 +5,10 @@ html(lang="en")
         //- meta(name = "discription" content="All courses for the information and computing science bachelor at Utrecht University")
         //- meta(name = "keywords" content="courses, utrecht university, information science, computing science, game technology")
         meta(name = "viewport" content="width=device-width, initial-scale=1.0")
+        //- Link to external CSS style document(s)
         link(rel="stylesheet" href="css/main.css")
+
+        script(src='/js/coursetableloader.js')
         title= course.title
 
     body
@@ -13,6 +16,7 @@ html(lang="en")
         header
             h1= course.title
         article
+
             ul Course information
                 li= 'This course is part of the '  + course.program + ' program.'
                 li= 'It is a level ' + course.level + ' course'
