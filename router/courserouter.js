@@ -4,18 +4,20 @@ const {Course} =require( "../classes/courses.js")
 const {Teacher} = require("../classes/person.js")
 const db = require('../database');
 
+
 router.get('/', function (req, res) {
     res.render('home');
 })
 
-//rout to get all course information
-router.get('/getcourses', function (req, res) {
+//route to get all course information
+router.post('/getcourses', function (req, res) {
+    console.log(req.body);
     db.all('SELECT * FROM courses' , [], function (err, rows) {
-        console.log(err);
+        //console.log(err);
         let courses = [];
         for (let i = 0; i < rows.length; i++) {
             let row = rows[i];
-            console.log(row);
+            //console.log(row);
             courses.push(new Course(row, undefined))  
         };
         res.send(JSON.stringify(courses));

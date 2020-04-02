@@ -1,3 +1,5 @@
+import { serverAuthType } from "parse";
+
 function loadCourses(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -7,7 +9,11 @@ function loadCourses(){
         displayrows(toDisplay, 0);
         }
     };
-    xhttp.open("GET", "/getcourses", true);
+    xhttp.open("POST", "/getcourses", true);
+    xhttp.setRequestHeader('Content-Type', 'application/json');
+    xhttp.send(JSON.stringify({
+        //hier moeten de waarden uit de form komen
+    }))
     xhttp.send();
 }
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const bodyParser = require('body-parser')
 
 /**
  * Settings
@@ -8,6 +8,10 @@ const app = express();
 const port = 8036;
 app.set('view engine', 'pug');
 app.use(express.static('static'));
+
+//needed to parse data submitted in the request body
+app.use(bodyParser.json()); 
+app.use(bodyParser.urlencoded({extended: true}));
 
 /**
  * Routes

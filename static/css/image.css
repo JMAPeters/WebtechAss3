@@ -11,3 +11,7 @@
             width: 100%;
         }
     }
+.teacherImage {
+    float: right;
+    padding: 0px 10px
+}
