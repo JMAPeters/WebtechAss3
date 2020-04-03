@@ -1,5 +1,6 @@
 function loadCourses(){
     var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/getcourses", true);
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
         var toDisplay = JSON.parse(xhttp.responseText);
@@ -8,7 +9,6 @@ function loadCourses(){
         displayrows(toDisplay, 0);
         }
     };
-    xhttp.open("POST", "/getcourses", true);
     xhttp.setRequestHeader('Content-Type', 'application/json');
     xhttp.send(JSON.stringify({
         //hier moeten de waarden uit de form komen
