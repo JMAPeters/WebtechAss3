@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const port = 8036;
 app.set('view engine', 'pug');
 app.use(express.static('static'));
+app.use(express.urlencoded({extended: false}));
 
 //needed to parse data submitted in the request body
 app.use(bodyParser.json()); 
@@ -17,22 +18,11 @@ app.use(bodyParser.urlencoded({extended: true}));
  * Routes
  */
 
-const home = require('./router/test');
-app.use('/home', home);
+// const home = require('./router/test');
+// app.use('/home', home);
 const courserouter = require('./router/courserouter');
 app.use('/', courserouter)
 const db = require('./database');
-
-
-// db.all('SELECT * FROM teachers',[], (err, rows) => {
-//     if (err) {
-//       console.log(err);
-//       return;
-//     }
-//     console.log(rows)
-// })
-  
-
 
 /**
  * App start
