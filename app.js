@@ -24,6 +24,14 @@ const courserouter = require('./router/courserouter');
 app.use('/', courserouter)
 const db = require('./database');
 
+db.all('SELECT * FROM students',[], (err, rows) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    console.log(rows)
+})
+
 /**
  * App start
  */

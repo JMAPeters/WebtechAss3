@@ -58,10 +58,10 @@ db.serialize(() => {
             level TEXT,
             password TEXT)`);
         
-        var insertStudent = "INSERT INTO students VALUES (?, ?, ?, ?, ?, ?)";
-        db.run(insertStudent, [6071953, "Peters", "Jorn", "", "BSc", "password1"]);
-        db.run(insertStudent, [6, "Rijcken", "Alijt", "", "BSc", "password2"]);
-        db.run(insertStudent, [60, "Van Der Hoorn", "Diede", "", "BSc", "password3"]);
+        // var insertStudent = "INSERT INTO students VALUES (?, ?, ?, ?, ?, ?)";
+        // db.run(insertStudent, [6071953, "Peters", "Jorn", "", "BSc", "password1"]);
+        // db.run(insertStudent, [6, "Rijcken", "Alijt", "", "BSc", "password2"]);
+        // db.run(insertStudent, [60, "Van Der Hoorn", "Diede", "", "BSc", "password3"]);
 
         
     }

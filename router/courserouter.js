@@ -12,10 +12,12 @@ const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
 
-const initializePassport = require('../static/js/passport-config')
-initializePassport(
+const initialize = require('../static/js/passport-config')
+initialize(
     passport, 
-    studentNumber => db.get(`SELECT studentNumber FROM students WHRERE studentNumber = ?`, studentNumber)
+    studentNumber => db.get(`SELECT * FROM students WHERE studentNumber = ?`, studentNumber, function (err, row){
+        return row;
+    }) 
 )
 
 router.use(flash())
@@ -55,8 +57,8 @@ router.post('/register', async function (req, res) {
     try {
         console.log("add user");
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        //var insertStudent = "INSERT INTO students VALUES (?, ?, ?, ?, ?, ?)";
-        //db.run(insertStudent, [req.body.studentNumber, req.body.lastNamer, req.body.firstName, req.body.program, req.body.level, hashedPassword]);
+        var insertStudent = "INSERT INTO students VALUES (?, ?, ?, ?, ?, ?)";
+        db.run(insertStudent, [req.body.studentNumber, req.body.lastName, req.body.firstName, req.body.program, req.body.level, hashedPassword]);
         res.redirect('/login');
     } catch{
         res.redirect('/register');
@@ -70,7 +72,7 @@ router.get('/getcourses', function (req, res) {
         let courses = [];
         for (let i = 0; i < rows.length; i++) {
             let row = rows[i];
-            //console.log(row);
+            console.log(row);
             courses.push(new Course(row, undefined))  
         };
         res.send(JSON.stringify(courses));

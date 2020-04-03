@@ -1,10 +1,9 @@
-import { serverAuthType } from "parse";
-
 function loadCourses(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
         var toDisplay = JSON.parse(xhttp.responseText);
+        console.log(toDisplay);
         //var toDisplay = filterSearch(JSON.parse(xhttp.responseText));
         displayrows(toDisplay, 0);
         }
@@ -14,7 +13,6 @@ function loadCourses(){
     xhttp.send(JSON.stringify({
         //hier moeten de waarden uit de form komen
     }))
-    xhttp.send();
 }
 
 function displayrows(courses, pageNb){
