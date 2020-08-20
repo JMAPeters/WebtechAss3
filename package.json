@@ -8,7 +8,7 @@
   },
   "author": "",
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "csv": "^5.3.2",
     "csv-parser": "^2.3.2",
     "ejs": "^3.0.1",
